@@ -19,7 +19,7 @@ export class FormFieldOverviewExample {
     this.registrationForm = this._formBuilder.group( {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      username: ['', Validators.required],
+      username: ['',  Validators.compose([Validators.minLength(3), Validators.required])],
       description: [''],
       gender: ['', Validators.required],
     })

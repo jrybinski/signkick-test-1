@@ -16,8 +16,13 @@
   
   <mat-form-field>
     <input matInput placeholder="Username" formControlName="username">
-    <mat-error *ngIf="registrationForm.get('username').hasError('required')">
-      Username is required.
+    <mat-error *ngIf="registrationForm.controls['username'].errors; let errors">
+      <ng-container *ngIf="errors.required">
+        Username is required.
+      </ng-container>
+      <ng-container *ngIf="errors.minlength">
+        Your username must be 3 chars or longer
+      </ng-container>
     </mat-error>
   </mat-form-field>
   
@@ -49,10 +54,6 @@
   </div>
   
   <div>Error: Username already taken</div>
-
-  <div>Error: Please select a gender</div>
-
-  <div>Error: Your username must be 3 chars or longer</div>
 
   <div>Info: Thanks for giving us a quick intro about you</div>
 
