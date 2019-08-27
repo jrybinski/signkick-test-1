@@ -1,27 +1,28 @@
-<form class="example-container">
+<form name="registrationForm" [formGroup]="registrationForm" (ngSubmit)="onSubmit()"  class="example-container">
   
   <mat-form-field>
-    <input matInput placeholder="First name">
+    <input matInput placeholder="First name" formControlName="firstName">
   </mat-form-field>
   
   <mat-form-field>
-    <input matInput placeholder="Last name">
+    <input matInput placeholder="Last name" formControlName="lastName">
   </mat-form-field>
   
   <mat-form-field>
-    <input matInput placeholder="Username">
+    <input matInput placeholder="Username" formControlName="username">
   </mat-form-field>
   
 
   <label>Description (optional)
   <mat-form-field>
-    <textarea matInput placeholder="Tell us more about you"></textarea>
+    <textarea matInput placeholder="Tell us more about you"
+              formControlName="description"></textarea>
   </mat-form-field>
   </label>
 
   <label>Gender
   <mat-form-field>
-    <mat-select placeholder="Select one">
+    <mat-select placeholder="Select one" formControlName="gender">
       <mat-option value="f">Female</mat-option>
       <mat-option value="m">Male</mat-option>
       <mat-option value="other">Other</mat-option>
