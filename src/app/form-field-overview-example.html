@@ -1,60 +1,63 @@
-<form name="registrationForm" [formGroup]="registrationForm" (ngSubmit)="onSubmit()"  class="example-container">
-  
-  <mat-form-field>
-    <input matInput placeholder="First name" formControlName="firstName">
-    <mat-error *ngIf="registrationForm.get('firstName').hasError('required')">
-      First name is required.
-    </mat-error>
-  </mat-form-field>
-  
-  <mat-form-field>
-    <input matInput placeholder="Last name" formControlName="lastName">
-    <mat-error *ngIf="registrationForm.get('lastName').hasError('required')">
-      Last name is required.
-    </mat-error>
-  </mat-form-field>
-  
-  <mat-form-field>
-    <input matInput placeholder="Username" formControlName="username">
-    <mat-error *ngIf="registrationForm.controls['username'].errors; let errors">
-      <ng-container *ngIf="errors.required">
-        Username is required.
-      </ng-container>
-      <ng-container *ngIf="errors.minlength">
-        Your username must be 3 chars or longer
-      </ng-container>
-      <ng-container *ngIf="errors.usernameTaken">
-        This username is already taken
-      </ng-container>
-    </mat-error>
-  </mat-form-field>
-  
+<ng-container *ngIf="!loading">
+  <form name="registrationForm" [formGroup]="registrationForm" (ngSubmit)="onSubmit()"  class="example-container">
 
-  <label>Description (optional)
-  <mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="First name" formControlName="firstName">
+      <mat-error *ngIf="registrationForm.get('firstName').hasError('required')">
+        First name is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Last name" formControlName="lastName">
+      <mat-error *ngIf="registrationForm.get('lastName').hasError('required')">
+        Last name is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Username" formControlName="username">
+      <mat-error *ngIf="registrationForm.controls['username'].errors; let errors">
+        <ng-container *ngIf="errors.required">
+          Username is required.
+        </ng-container>
+        <ng-container *ngIf="errors.minlength">
+          Your username must be 3 chars or longer
+        </ng-container>
+        <ng-container *ngIf="errors.usernameTaken">
+          This username is already taken
+        </ng-container>
+      </mat-error>
+    </mat-form-field>
+
+
+    <label>Description (optional)
+      <mat-form-field>
     <textarea matInput placeholder="Tell us more about you"
               formControlName="description"></textarea>
-  </mat-form-field>
-  </label>
+      </mat-form-field>
+    </label>
 
-  <label>Gender
-  <mat-form-field>
-    <mat-select placeholder="Select one" formControlName="gender">
-      <mat-option value="f">Female</mat-option>
-      <mat-option value="m">Male</mat-option>
-      <mat-option value="other">Other</mat-option>
-      <mat-option value="unsaid">I prefer not to say</mat-option>
-    </mat-select>
-    <mat-error *ngIf="registrationForm.get('gender').hasError('required')">
-      Gender is required.
-    </mat-error>
-  </mat-form-field>
-  </label>
+    <label>Gender
+      <mat-form-field>
+        <mat-select placeholder="Select one" formControlName="gender">
+          <mat-option value="f">Female</mat-option>
+          <mat-option value="m">Male</mat-option>
+          <mat-option value="other">Other</mat-option>
+          <mat-option value="unsaid">I prefer not to say</mat-option>
+        </mat-select>
+        <mat-error *ngIf="registrationForm.get('gender').hasError('required')">
+          Gender is required.
+        </mat-error>
+      </mat-form-field>
+    </label>
 
 
-  <div>
-    <button type="submit" [disabled]="registrationForm.invalid" mat-flat-button color="primary">Submit</button>
-  </div>
+    <div>
+      <button type="submit" [disabled]="registrationForm.invalid" mat-flat-button color="primary">Submit</button>
+    </div>
 
-</form>
+  </form>
+</ng-container>
 
+<mat-spinner *ngIf="loading"></mat-spinner>

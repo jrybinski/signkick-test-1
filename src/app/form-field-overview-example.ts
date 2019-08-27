@@ -11,6 +11,7 @@ import {UsernameValidator} from "./username.validator";
 })
 export class FormFieldOverviewExample {
   registrationForm: FormGroup;
+  loading = false;
 
   constructor(
     private _userService: UserService,
@@ -28,6 +29,12 @@ export class FormFieldOverviewExample {
   }
 
   onSubmit() {
+    this.loading = true;
+    setTimeout(() => this.finishLoading(), 3000);
+  }
+
+  private finishLoading() {
+    this.loading = false;
     this._userService.createUser(this.registrationForm.getRawValue());
     alert("Info: Thanks for giving us a quick intro about you");
     this.registrationForm.reset();
