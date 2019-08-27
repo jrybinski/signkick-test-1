@@ -13,7 +13,7 @@ export class FormFieldOverviewExample {
   registrationForm: FormGroup;
 
   constructor(
-    private _user: UserService, 
+    private _userService: UserService,
     private _formBuilder: FormBuilder,
     private _usernameService: UsernameService,
   ) {
@@ -28,7 +28,8 @@ export class FormFieldOverviewExample {
   }
 
   onSubmit() {
-    console.log('Submited ', this.registrationForm.getRawValue());
+    this._userService.createUser(this.registrationForm.getRawValue());
+    this.registrationForm.reset();
   }
 }
 
