@@ -29,6 +29,7 @@ export class FormFieldOverviewExample {
 
   onSubmit() {
     this._userService.createUser(this.registrationForm.getRawValue());
+    alert("Info: Thanks for giving us a quick intro about you");
     this.registrationForm.reset();
   }
 }
