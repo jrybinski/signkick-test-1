@@ -11,11 +11,10 @@ export class UsernameService {
     'bob',
     'mike',
     'john'
-  ]
+  ];
 
   isUsernameTaken(username: string): Observable<boolean> {
     const randomDelay = Math.random() * 100;
-    
     return of(this._existing.indexOf(username) >= 0).pipe(
       delay(randomDelay)
     )

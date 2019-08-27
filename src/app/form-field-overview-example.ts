@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UsernameService } from './username.service';
 import { UserService } from './user.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UsernameValidator} from "./username.validator";
 
 @Component({
   selector: 'form-field-overview-example',
@@ -14,12 +15,13 @@ export class FormFieldOverviewExample {
   constructor(
     private _user: UserService, 
     private _formBuilder: FormBuilder,
-    private _username: UsernameService, 
+    private _usernameService: UsernameService,
   ) {
     this.registrationForm = this._formBuilder.group( {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      username: ['',  Validators.compose([Validators.minLength(3), Validators.required])],
+      username: ['',  Validators.compose([Validators.minLength(3),
+        Validators.required]), UsernameValidator.createValidator(this._usernameService)],
       description: [''],
       gender: ['', Validators.required],
     })

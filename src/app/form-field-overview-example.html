@@ -23,6 +23,9 @@
       <ng-container *ngIf="errors.minlength">
         Your username must be 3 chars or longer
       </ng-container>
+      <ng-container *ngIf="errors.usernameTaken">
+        This username is already taken
+      </ng-container>
     </mat-error>
   </mat-form-field>
   
@@ -50,7 +53,7 @@
 
 
   <div>
-    <button type="submit" mat-flat-button color="primary">Submit</button>
+    <button type="submit" [disabled]="registrationForm.invalid" mat-flat-button color="primary">Submit</button>
   </div>
   
   <div>Error: Username already taken</div>
